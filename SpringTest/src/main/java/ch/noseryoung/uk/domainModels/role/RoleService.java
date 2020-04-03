@@ -9,10 +9,10 @@ public interface RoleService {
 
     List<Role> findAll();
 
-    Role findById(int id);
+    Role findById(String id);
 
-    Role updateById(int id, Role role);
+    Role updateById(String id, Role role);
 
-    void deleteById(int id);
+    void deleteById(String id);
 
 }

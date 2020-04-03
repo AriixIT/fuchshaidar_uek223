@@ -1,8 +1,10 @@
 package ch.noseryoung.uk.domainModels.user;
 
 import ch.noseryoung.uk.domainModels.role.Role;
+import org.hibernate.annotations.Generated;
+import org.hibernate.annotations.GenerationTime;
+import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Type;
-
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.Set;
@@ -17,14 +19,18 @@ import java.util.Set;
 public class User {
 
     // Regular attributes
-    // Regular attributes
     // The primary key, this annotation defines that this is a primary key:
     @Id
-    // This annotation makes sure that our id gets auto-incremented
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    // This annotation makes sure that our id gets generated
+    @GeneratedValue(generator = "system-uuid")
+    // With this annotation we define the generator for our UUIDs
+    @GenericGenerator(name = "system-uuid", strategy = "uuid")
+    // And lastly this annotation ensures when it will get generated
+    @Generated(GenerationTime.ALWAYS)
     // This annotation simply defines that this attribute has it's own column and how that column is called
     @Column(name = "id")
-    private int id;
+    // UUIDs are strings
+    private String id;
 
     // In this example the name has not been defined, if you do this hibernate will plainly use the name of the variable itself
     // The nullable parameter defines if this attribute can be null in the database
@@ -66,15 +72,11 @@ public class User {
     @Column(name = "credentials_expiration_date")
     private LocalDate credentialsExpirationDate;
 
-    // Simple column annotation without naming
-    @Column
-    // This annotation defines as what kind of data type this attribute should be persisted at in the database
+    @Column(name = "locked")
     @Type(type = "org.hibernate.type.NumericBooleanType")
     private Boolean locked;
 
-    // Simple column annotation without naming
-    @Column
-    // This annotation defines as what kind of data type this attribute should be persisted at in the database
+    @Column(name = "enabled")
     @Type(type = "org.hibernate.type.NumericBooleanType")
     private Boolean enabled;
 
@@ -82,11 +84,11 @@ public class User {
     public User() {}
 
     // Getters and setters
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public User setId(int id) {
+    public User setId(String id) {
         this.id = id;
         return this;
     }
@@ -146,22 +148,20 @@ public class User {
         return this;
     }
 
-    public Boolean getLocked() {
+    public Boolean isLocked() {
         return locked;
     }
 
-    public User setLocked(Boolean locked) {
+    public void setLocked(Boolean locked) {
         this.locked = locked;
-        return this;
     }
 
-    public Boolean getEnabled() {
+    public Boolean isEnabled() {
         return enabled;
     }
 
-    public User setEnabled(Boolean enabled) {
+    public void setEnabled(Boolean enabled) {
         this.enabled = enabled;
-        return this;
     }
 
 }

@@ -9,7 +9,7 @@ import java.util.Set;
 public class UserDTO {
 
     // Representative attributes, make sure they are called the same way as the attribute that they represent
-    private int id;
+    private String id;
 
     private String username;
 
@@ -25,11 +25,11 @@ public class UserDTO {
     public UserDTO() {}
 
     // Standard getters and setters
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public UserDTO setId(int id) {
+    public UserDTO setId(String id) {
         this.id = id;
         return this;
     }

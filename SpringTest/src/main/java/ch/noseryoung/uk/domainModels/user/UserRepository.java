@@ -5,7 +5,7 @@ import org.springframework.stereotype.Repository;
 
 // This is an example repository with an example query
 @Repository
-public interface UserRepository extends JpaRepository<User, Integer> {
+public interface UserRepository extends JpaRepository<User, String> {
 
     // This is an example query, it isn't actually used
     // It exists to show the basic syntax of the generated queries

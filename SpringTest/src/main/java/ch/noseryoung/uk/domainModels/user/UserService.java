@@ -1,7 +1,5 @@
 package ch.noseryoung.uk.domainModels.user;
 
-import ch.noseryoung.uk.domainModels.auction.Auction;
-
 import java.util.List;
 
 // This is an example service with method signatures for CRUD logic

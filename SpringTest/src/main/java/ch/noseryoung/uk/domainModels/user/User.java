@@ -1,7 +1,5 @@
 package ch.noseryoung.uk.domainModels.user;
 
-import ch.noseryoung.uk.domainModels.auction.Auction;
-import ch.noseryoung.uk.domainModels.bid.Bid;
 import ch.noseryoung.uk.domainModels.role.Role;
 import org.hibernate.annotations.Type;
 
@@ -18,6 +16,7 @@ import java.util.Set;
 @Table(name = "users")
 public class User {
 
+    // Regular attributes
     // Regular attributes
     // The primary key, this annotation defines that this is a primary key:
     @Id
@@ -49,7 +48,7 @@ public class User {
     // In many to many relations the data type is preferred to be a Set for performance, in one to many and many to one
     // relations the preferred data type are lists.
     @JoinTable(
-            name = "role_authority",
+            name = "users_role",
             joinColumns = @JoinColumn(name = "users_id"),
             inverseJoinColumns = @JoinColumn(name = "role_id")
     )

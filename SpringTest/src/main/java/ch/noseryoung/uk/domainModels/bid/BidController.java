@@ -1,5 +1,7 @@
 package ch.noseryoung.uk.domainModels.bid;
 
+import ch.noseryoung.uk.domainModels.bid.dto.BidDTO;
+import ch.noseryoung.uk.domainModels.bid.dto.BidMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -13,29 +15,32 @@ public class BidController {
 
     private BidService bidService;
 
+    private BidMapper bidMapper;
+
     @Autowired
-    public BidController(BidService service) {
+    public BidController(BidService service, BidMapper bidMapper) {
         this.bidService = service;
+        this.bidMapper = bidMapper;
     }
 
     @PostMapping({"/", ""})
-    public ResponseEntity<Bid> create(@RequestBody Bid bid) {
-        return new ResponseEntity<>(bidService.create(bid), HttpStatus.CREATED);
+    public ResponseEntity<BidDTO> create(@RequestBody BidDTO bid) {
+        return new ResponseEntity<>(bidMapper.toDTO(bidService.create(bidMapper.fromDTO(bid))), HttpStatus.CREATED);
     }
 
     @GetMapping({"/", ""})
-    public ResponseEntity<List<Bid>> getAll() {
-        return new ResponseEntity<>(bidService.findAll(), HttpStatus.OK);
+    public ResponseEntity<List<BidDTO>> getAll() {
+        return new ResponseEntity<>(bidMapper.toDTOs(bidService.findAll()), HttpStatus.OK);
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Bid> getById(@PathVariable int id) {
-        return new ResponseEntity<>(bidService.findById(id), HttpStatus.OK);
+    public ResponseEntity<BidDTO> getById(@PathVariable int id) {
+        return new ResponseEntity<>(bidMapper.toDTO(bidService.findById(id)), HttpStatus.OK);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Bid> updateById(@PathVariable int id, @RequestBody Bid bid) {
-        return new ResponseEntity<>(bidService.updateById(id, bid), HttpStatus.OK);
+    public ResponseEntity<BidDTO> updateById(@PathVariable int id, @RequestBody BidDTO bid) {
+        return new ResponseEntity<>(bidMapper.toDTO(bidService.updateById(id, bidMapper.fromDTO(bid))), HttpStatus.OK);
     }
 
     @DeleteMapping("/{id}")

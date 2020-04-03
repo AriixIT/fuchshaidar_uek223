@@ -1,6 +1,5 @@
 package ch.noseryoung.uk.domainModels.user;
 
-import ch.noseryoung.uk.domainModels.auction.Auction;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.List;
@@ -54,6 +53,5 @@ public class UserServiceImpl implements UserService {
     public void deleteById(int id) {
         userRepository.deleteById(id);
     }
-
 
 }

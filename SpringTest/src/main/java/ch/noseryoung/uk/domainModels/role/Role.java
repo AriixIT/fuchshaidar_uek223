@@ -13,6 +13,7 @@ import java.util.Set;
 public class Role {
 
     // Regular attributes
+    // Regular attributes
     // The primary key, this annotation defines that this is a primary key:
     @Id
     // This annotation makes sure that our id gets auto-incremented

@@ -1,6 +1,10 @@
 package ch.noseryoung.uk.domainModels.auction;
 
 import ch.noseryoung.uk.domainModels.article.Article;
+import ch.noseryoung.uk.domainModels.article.dto.ArticleDTO;
+import ch.noseryoung.uk.domainModels.article.dto.ArticleMapper;
+import ch.noseryoung.uk.domainModels.auction.dto.AuctionDTO;
+import ch.noseryoung.uk.domainModels.auction.dto.AuctionMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -14,34 +18,40 @@ public class AuctionController {
 
     private AuctionService auctionService;
 
+    private AuctionMapper auctionMapper;
+
+    private ArticleMapper articleMapper;
+
     @Autowired
-    public AuctionController(AuctionService service) {
+    public AuctionController(AuctionService service, AuctionMapper auctionMapper, ArticleMapper articleMapper) {
         this.auctionService = service;
+        this.auctionMapper = auctionMapper;
+        this.articleMapper = articleMapper;
     }
 
     @PostMapping({"/", ""})
-    public ResponseEntity<Auction> create(@RequestBody Auction auction) {
-        return new ResponseEntity<>(auctionService.create(auction), HttpStatus.CREATED);
+    public ResponseEntity<AuctionDTO> create(@RequestBody AuctionDTO auction) {
+        return new ResponseEntity<>(auctionMapper.toDTO(auctionService.create(auctionMapper.fromDTO(auction))), HttpStatus.CREATED);
     }
 
     @GetMapping({"/", ""})
-    public ResponseEntity<List<Auction>> getAll() {
-        return new ResponseEntity<>(auctionService.findAll(), HttpStatus.OK);
+    public ResponseEntity<List<AuctionDTO>> getAll() {
+        return new ResponseEntity<>(auctionMapper.toDTOs(auctionService.findAll()), HttpStatus.OK);
     }
 
     @GetMapping({"/getArticlesOfAuctionsWithBid/{id}"})
-    public ResponseEntity<List<Article>> getArticlesOfAuctionsWithBid(@PathVariable int id) {
-        return new ResponseEntity<>(auctionService.getArticlesOfAuctionsWithBidByUser(id), HttpStatus.OK);
+    public ResponseEntity<List<ArticleDTO>> getArticlesOfAuctionsWithBid(@PathVariable int id) {
+        return new ResponseEntity<>(articleMapper.toDTOs(auctionService.getArticlesOfAuctionsWithBidByUser(id)), HttpStatus.OK);
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Auction> getById(@PathVariable int id) {
-        return new ResponseEntity<>(auctionService.findById(id), HttpStatus.OK);
+    public ResponseEntity<AuctionDTO> getById(@PathVariable int id) {
+        return new ResponseEntity<>(auctionMapper.toDTO(auctionService.findById(id)), HttpStatus.OK);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Auction> updateById(@PathVariable int id, @RequestBody Auction auction) {
-        return new ResponseEntity<>(auctionService.updateById(id, auction), HttpStatus.OK);
+    public ResponseEntity<AuctionDTO> updateById(@PathVariable int id, @RequestBody AuctionDTO auction) {
+        return new ResponseEntity<>(auctionMapper.toDTO(auctionService.updateById(id, auctionMapper.fromDTO(auction))), HttpStatus.OK);
     }
 
     @DeleteMapping("/{id}")

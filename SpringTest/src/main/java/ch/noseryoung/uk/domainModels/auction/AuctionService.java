@@ -9,15 +9,15 @@ public interface AuctionService {
 
     List<Auction> findAll();
 
-    Auction findById(int id);
+    Auction findById(String id);
 
-    Auction updateById(int id, Auction auction);
+    Auction updateById(String id, Auction auction);
 
-    void deleteById(int id);
+    void deleteById(String id);
 
-    List<Auction> getAllByUser(int userId);
+    List<Auction> getAllByUser(String userId);
 
     List<Auction> filterAllAuctionsWithNoBidsMade(List<Auction> auctions);
 
-    List<Article> getArticlesOfAuctionsWithBidByUser(int userId);
+    List<Article> getArticlesOfAuctionsWithBidByUser(String userId);
 }

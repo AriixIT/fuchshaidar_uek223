@@ -27,12 +27,12 @@ public class BidServiceImpl implements BidService {
     }
 
     @Override
-    public Bid findById(int id) {
+    public Bid findById(String id) {
         return bidRepository.findById(id).get();
     }
 
     @Override
-    public Bid updateById(int id, Bid bid) {
+    public Bid updateById(String id, Bid bid) {
         if(bidRepository.existsById(id)) {
             bid.setId(id);
             bidRepository.save(bid);
@@ -44,7 +44,7 @@ public class BidServiceImpl implements BidService {
     }
 
     @Override
-    public void deleteById(int id) {
+    public void deleteById(String id) {
         bidRepository.deleteById(id);
     }
 }

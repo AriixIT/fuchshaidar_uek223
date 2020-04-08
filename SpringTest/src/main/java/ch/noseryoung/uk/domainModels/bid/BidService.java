@@ -7,9 +7,9 @@ public interface BidService {
 
     List<Bid> findAll();
 
-    Bid findById(int id);
+    Bid findById(String id);
 
-    Bid updateById(int id, Bid bid);
+    Bid updateById(String id, Bid bid);
 
-    void deleteById(int id);
+    void deleteById(String id);
 }

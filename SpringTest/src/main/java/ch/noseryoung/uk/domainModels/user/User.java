@@ -80,6 +80,8 @@ public class User {
     @Type(type = "org.hibernate.type.NumericBooleanType")
     private Boolean enabled;
 
+
+
     // Standard empty constructor
     public User() {}
 

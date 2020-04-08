@@ -14,7 +14,7 @@ public class Auction {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
-    private int id;
+    private String id;
 
     @Column(nullable = false)
     private String description;
@@ -42,11 +42,11 @@ public class Auction {
 
     public Auction(){}
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public Auction setId(int id) {
+    public Auction setId(String id) {
         this.id = id;
         return this;
     }

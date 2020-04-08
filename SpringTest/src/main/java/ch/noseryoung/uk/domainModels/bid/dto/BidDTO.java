@@ -4,7 +4,7 @@ import ch.noseryoung.uk.domainModels.user.User;
 
 public class BidDTO {
 
-    private int id;
+    private String id;
 
     private int amount;
 
@@ -13,11 +13,11 @@ public class BidDTO {
     public BidDTO(){}
 
     // Getters and setters
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public BidDTO setId(int id) {
+    public BidDTO setId(String id) {
         this.id = id;
         return this;
     }

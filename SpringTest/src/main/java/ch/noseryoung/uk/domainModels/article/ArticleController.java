@@ -34,17 +34,17 @@ public class ArticleController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<ArticleDTO> getById(@PathVariable int id) {
+    public ResponseEntity<ArticleDTO> getById(@PathVariable String id) {
         return new ResponseEntity<>(articleMapper.toDTO(articleService.findById(id)), HttpStatus.OK);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<ArticleDTO> updateById(@PathVariable int id, @RequestBody ArticleDTO article) {
+    public ResponseEntity<ArticleDTO> updateById(@PathVariable String id, @RequestBody ArticleDTO article) {
         return new ResponseEntity<>(articleMapper.toDTO(articleService.updateById(id, articleMapper.fromDTO(article))), HttpStatus.OK);
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteById(@PathVariable int id) {
+    public ResponseEntity<Void> deleteById(@PathVariable String id) {
         articleService.deleteById(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }

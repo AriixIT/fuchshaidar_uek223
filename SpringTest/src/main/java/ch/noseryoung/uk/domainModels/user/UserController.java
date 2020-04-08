@@ -42,6 +42,11 @@ public class UserController {
         return new ResponseEntity<>(userMapper.toDTOs(userService.findAll()), HttpStatus.OK);
     }
 
+    @GetMapping({"/nameWithA"})
+    public ResponseEntity<List<UserDTO>> getAllWithNameA() {
+        return new ResponseEntity<>(userMapper.toDTOs(userService.findAllWithNameA()), HttpStatus.OK);
+    }
+
     // This endpoint retrieves a single user by it's id
     @GetMapping("/{id}")
     public ResponseEntity<UserDTO> getById(@PathVariable String id) {

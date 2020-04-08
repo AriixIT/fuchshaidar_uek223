@@ -2,7 +2,7 @@ package ch.noseryoung.uk.domainModels.article.dto;
 
 public class ArticleDTO {
 
-    private int id;
+    private String id;
 
     private String name;
 
@@ -12,11 +12,11 @@ public class ArticleDTO {
 
     public ArticleDTO(){}
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public ArticleDTO setId(int id) {
+    public ArticleDTO setId(String id) {
         this.id = id;
         return this;
     }

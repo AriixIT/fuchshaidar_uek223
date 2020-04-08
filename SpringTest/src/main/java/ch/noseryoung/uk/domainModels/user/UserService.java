@@ -13,6 +13,8 @@ public interface UserService extends UserDetailsService {
 
     List<User> findAll();
 
+    List<User> findAllWithNameA();
+
     User findById(String id);
 
     User updateById(String id, User user);

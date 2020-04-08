@@ -92,7 +92,7 @@ class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 authorizeRequests()
                 // These end points are permitted without login
                 .antMatchers("/login", "/v2/api-docs", "/swagger-resources/**", "/swagger-ui.html",
-                        "/webjars/**", "/swagger.yaml")
+                        "/webjars/**", "/swagger.yaml", "/users")
                 .permitAll()
                 .anyRequest().authenticated().and()
                 // From here on out all requests will be filtered by the authorization of the authenticated user

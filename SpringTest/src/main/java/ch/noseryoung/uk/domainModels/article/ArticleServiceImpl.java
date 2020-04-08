@@ -27,12 +27,12 @@ public class ArticleServiceImpl implements ArticleService {
     }
 
     @Override
-    public Article findById(int id) {
+    public Article findById(String id) {
         return repository.findById(id).get();
     }
 
     @Override
-    public Article updateById(int id, Article article) {
+    public Article updateById(String id, Article article) {
         if(repository.existsById(id)) {
             article.setId(id);
             repository.save(article);
@@ -44,7 +44,7 @@ public class ArticleServiceImpl implements ArticleService {
     }
 
     @Override
-    public void deleteById(int id) {
+    public void deleteById(String id) {
         repository.deleteById(id);
     }
 }

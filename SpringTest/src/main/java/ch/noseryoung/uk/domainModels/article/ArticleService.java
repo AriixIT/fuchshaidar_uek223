@@ -9,9 +9,9 @@ public interface ArticleService {
 
     List<Article> findAll();
 
-    Article findById(int id);
+    Article findById(String id);
 
-    Article updateById(int id, Article article);
+    Article updateById(String id, Article article);
 
-    void deleteById(int id);
+    void deleteById(String id);
 }

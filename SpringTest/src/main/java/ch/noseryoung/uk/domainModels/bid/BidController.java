@@ -34,17 +34,17 @@ public class BidController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<BidDTO> getById(@PathVariable int id) {
+    public ResponseEntity<BidDTO> getById(@PathVariable String id) {
         return new ResponseEntity<>(bidMapper.toDTO(bidService.findById(id)), HttpStatus.OK);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<BidDTO> updateById(@PathVariable int id, @RequestBody BidDTO bid) {
+    public ResponseEntity<BidDTO> updateById(@PathVariable String id, @RequestBody BidDTO bid) {
         return new ResponseEntity<>(bidMapper.toDTO(bidService.updateById(id, bidMapper.fromDTO(bid))), HttpStatus.OK);
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteById(@PathVariable int id) {
+    public ResponseEntity<Void> deleteById(@PathVariable String id) {
         bidService.deleteById(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }

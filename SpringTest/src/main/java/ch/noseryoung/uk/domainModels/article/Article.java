@@ -9,7 +9,7 @@ public class Article {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
-    private int id;
+    private String id;
 
     @Column(nullable = false)
     private String name;
@@ -22,11 +22,11 @@ public class Article {
 
     public Article(){}
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public Article setId(int id) {
+    public Article setId(String id) {
         this.id = id;
         return this;
     }

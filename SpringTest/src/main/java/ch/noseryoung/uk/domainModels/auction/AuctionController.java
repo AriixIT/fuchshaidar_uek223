@@ -40,22 +40,22 @@ public class AuctionController {
     }
 
     @GetMapping({"/getArticlesOfAuctionsWithBid/{id}"})
-    public ResponseEntity<List<ArticleDTO>> getArticlesOfAuctionsWithBid(@PathVariable int id) {
+    public ResponseEntity<List<ArticleDTO>> getArticlesOfAuctionsWithBid(@PathVariable String id) {
         return new ResponseEntity<>(articleMapper.toDTOs(auctionService.getArticlesOfAuctionsWithBidByUser(id)), HttpStatus.OK);
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<AuctionDTO> getById(@PathVariable int id) {
+    public ResponseEntity<AuctionDTO> getById(@PathVariable String id) {
         return new ResponseEntity<>(auctionMapper.toDTO(auctionService.findById(id)), HttpStatus.OK);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<AuctionDTO> updateById(@PathVariable int id, @RequestBody AuctionDTO auction) {
+    public ResponseEntity<AuctionDTO> updateById(@PathVariable String id, @RequestBody AuctionDTO auction) {
         return new ResponseEntity<>(auctionMapper.toDTO(auctionService.updateById(id, auctionMapper.fromDTO(auction))), HttpStatus.OK);
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteById(@PathVariable int id) {
+    public ResponseEntity<Void> deleteById(@PathVariable String id) {
         auctionService.deleteById(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }

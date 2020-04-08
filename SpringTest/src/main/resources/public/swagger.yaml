@@ -398,6 +398,31 @@ paths:
         404:
           description: Not Found
       deprecated: false
+  /users/nameWithA:
+    # This part defines which http method it to be used for this endpoint
+    get:
+      # This part defines to which controller this endpoint belongs to
+      tags:
+        - UserController
+      # A quick summary what this endpoint does
+      summary: 'Returns all users which username starts with an a '
+      # What kind of payload to expect
+      produces:
+        - application/json
+      # The possible responses if accessed correctly
+      responses:
+        200:
+          description: OK
+          # The payload which you'll receive
+          schema:
+            type: String
+            items: username
+              # A reference to an object we created below
+              $ref: '#/definitions/UsersDTO'
+        403:
+          description: Forbidden
+      # Is this endpoint deprecated?
+      deprecated: false
 
 # All the DTOs
 definitions:

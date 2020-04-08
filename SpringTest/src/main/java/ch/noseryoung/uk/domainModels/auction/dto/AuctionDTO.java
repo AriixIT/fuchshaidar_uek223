@@ -8,7 +8,7 @@ import java.util.Set;
 
 public class AuctionDTO {
 
-    private int id;
+    private String id;
 
     private String description;
 
@@ -26,56 +26,14 @@ public class AuctionDTO {
 
     public AuctionDTO(){}
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public AuctionDTO setId(int id) {
+    public AuctionDTO setId(String id) {
         this.id = id;
         return this;
     }
-
-    /*
-    {
-        "id": 2,
-        "description": "Idk bet for this house",
-        "fixedPrice": 8888.0,
-        "startingPrice": 1.0,
-        "bids":  [
-	        	{
-		        "id": 3,
-		        "amount": 3,
-		        "user": {
-		            "id": 1,
-		            "username": "Amin",
-		            "password": "password",
-		            "roles": [],
-		            "accountExpirationDate": null,
-		            "credentialsExpirationDate": null,
-		            "locked": null,
-		            "enabled": null
-		        }
-	        }
-        ],
-        "article": {
-            "id": 2,
-            "name": "House",
-            "description": "A nice house",
-            "value": 12345.0
-        },
-        "user": {
-            "id": 1,
-            "username": "Amin",
-            "password": "password",
-            "roles": [],
-            "accountExpirationDate": null,
-            "credentialsExpirationDate": null,
-            "locked": null,
-            "enabled": null
-        },
-        "public": false
-    }
-     */
 
     public String getDescription() {
         return description;

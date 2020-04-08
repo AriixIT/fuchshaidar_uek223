@@ -4,6 +4,7 @@ import ch.noseryoung.uk.domainModels.article.Article;
 import ch.noseryoung.uk.domainModels.bid.BidService;
 import ch.noseryoung.uk.domainModels.user.User;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -31,12 +32,12 @@ public class AuctionServiceImpl implements AuctionService {
     }
 
     @Override
-    public Auction findById(int id) {
+    public Auction findById(String id) {
         return auctionRepository.findById(id).get();
     }
 
     @Override
-    public Auction updateById(int id, Auction auction) {
+    public Auction updateById(String id, Auction auction) {
         if(auctionRepository.existsById(id)) {
             auction.setId(id);
             auctionRepository.save(auction);
@@ -47,12 +48,12 @@ public class AuctionServiceImpl implements AuctionService {
         }    }
 
     @Override
-    public void deleteById(int id) {
+    public void deleteById(String id) {
         auctionRepository.deleteById(id);
     }
 
     @Override
-    public List<Auction> getAllByUser(int userId){
+    public List<Auction> getAllByUser(String userId){
         List<Auction> auctionsOfUser = new ArrayList<>();
         for(Auction auction : findAll()){
             if(auction.getUser().getId() == userId){
@@ -75,7 +76,7 @@ public class AuctionServiceImpl implements AuctionService {
     }
 
     @Override
-    public List<Article> getArticlesOfAuctionsWithBidByUser(int userId) {
+    public List<Article> getArticlesOfAuctionsWithBidByUser(String userId) {
         List<Auction> auctions = getAllByUser(userId);
         auctions = filterAllAuctionsWithNoBidsMade(auctions);
         List<Article> articles = new ArrayList<>();
